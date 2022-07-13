@@ -1,0 +1,2 @@
+# LibVLCSharpMaui
+VLCSharp for maui
