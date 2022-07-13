@@ -1,7 +1,7 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using LibVLCSharp.Maui.Events;
 
 namespace LibVLCSharp.Maui.Platforms.Windows;
-public class VideoView : Control, IVideoView
+public class VideoView : VideoViewBase<VLCInitilizedeventArgs>, IVideoView
 {
     MediaPlayerX? _mediaPlayer;
     public MediaPlayerX? MediaPlayer
@@ -20,6 +20,11 @@ public class VideoView : Control, IVideoView
         }
     }
 
+    protected override VLCInitilizedeventArgs CreateInitializedEventArgs()
+    {
+        return new VLCInitilizedeventArgs(SwapChainOptions);
+    }
+
     void Attach()
     {
         if (MediaPlayer == null || MediaPlayer.NativeReference == IntPtr.Zero)
@@ -33,7 +38,7 @@ public class VideoView : Control, IVideoView
         if (MediaPlayer == null || MediaPlayer.NativeReference == IntPtr.Zero)
             return;
 
-        MediaPlayer.Hwnd = IntPtr.Zero;
+        //MediaPlayer.Hwnd = IntPtr.Zero;
     }
 
 }

@@ -9,3 +9,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:LibVLCSharp.Maui.MediaViewHandler.#ctor")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:LibVLCSharp.Maui.MediaViewHandler.#ctor(Microsoft.Maui.IPropertyMapper)")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~F:LibVLCSharp.Maui.Controls.MediaView.MediaPlayerProperty")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:LibVLCSharp.Maui.MediaViewHandler.CreatePlatformView~LibVLCSharp.Platforms.Android.VideoView")]

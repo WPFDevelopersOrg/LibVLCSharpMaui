@@ -9,7 +9,7 @@ public partial class MediaViewHandler : ViewHandler<IMediaView, VideoView>
 {
     protected override VideoView CreatePlatformView()
     {
-        throw new NotImplementedException();
+        return new VideoView();
     }
 
     public static void MapMediaPlayer(MediaViewHandler handler, IMediaView view)

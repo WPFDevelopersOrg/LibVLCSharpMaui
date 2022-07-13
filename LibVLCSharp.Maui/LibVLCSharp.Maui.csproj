@@ -31,6 +31,7 @@
 
 	<ItemGroup Condition="$(TargetFramework.Contains('windows'))">
 		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.17.4" />
+		<PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
