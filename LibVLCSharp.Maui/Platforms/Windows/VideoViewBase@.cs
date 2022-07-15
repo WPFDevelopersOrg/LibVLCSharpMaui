@@ -1,5 +1,7 @@
-﻿namespace LibVLCSharp.Maui.Platforms.Windows;
-public abstract class VideoViewBase<TEventArgs> : VideoViewBase where TEventArgs : EventArgs
+﻿using LibVLCSharp.Maui.Shared;
+
+namespace LibVLCSharp.Maui.Platforms.Windows;
+public abstract class VideoViewBase<TEventArgs> : VideoViewBase, IVideoViewBase<TEventArgs> where TEventArgs : EventArgs
 {
     public event EventHandler<TEventArgs>? Initialized;
 
