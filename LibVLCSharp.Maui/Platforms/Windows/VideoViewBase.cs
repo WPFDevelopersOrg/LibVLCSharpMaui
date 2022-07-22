@@ -3,30 +3,30 @@ using Microsoft.UI.Xaml.Controls;
 using SharpDX.Mathematics.Interop;
 using System.Runtime.InteropServices;
 using SharpDxdxgi = SharpDX.DXGI;
+using MicrosoftuixamlControls = Microsoft.UI.Xaml.Controls;
+using WinRT;
+using MicrosoftuixamlMedia = Microsoft.UI.Xaml.Media;
 
 namespace LibVLCSharp.Maui.Platforms.Windows;
 
 //[TemplatePart(Name = PARTSwapChainPanelName, Type = typeof(SwapChainPanel))]
-public abstract class VideoViewBase : SwapChainPanel
+public abstract class VideoViewBase : MicrosoftuixamlControls.Grid
 {
     public VideoViewBase()
     {
-        //DefaultStyleKey = typeof(VideoViewBase);
-        //if (!DesignMode.IsDesignModeEnabled)
-        //{
-        //    Unloaded += VideoViewBase_Unloaded;
-        //}
-        _SwapChainPanel = this;
-        SizeChanged += SwapChainPanel_SizeChanged;
-        CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
-        Unloaded += VideoViewBase_Unloaded;
+        _SwapChainPanel = new SwapChainPanel();
+        Children.Add(_SwapChainPanel);
+
+        _SwapChainPanel.SizeChanged += SwapChainPanel_SizeChanged;
+        _SwapChainPanel.CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
+        _SwapChainPanel.Unloaded += VideoViewBase_Unloaded;
     }
 
     const string PARTSwapChainPanelName = "PARTSwapChainPanel";
     readonly Guid SWAPCHAIN_WIDTH = new Guid(0xf1b59347, 0x1643, 0x411a, 0xad, 0x6b, 0xc7, 0x80, 0x17, 0x7a, 0x6, 0xb6);
     readonly Guid SWAPCHAIN_HEIGHT = new Guid(0x6ea976a0, 0x9d60, 0x4bb7, 0xa5, 0xa9, 0x7d, 0xd1, 0x18, 0x7f, 0xc9, 0xbd);
 
-    SwapChainPanel? _SwapChainPanel;
+    readonly SwapChainPanel _SwapChainPanel;
     SharpDX.Direct3D11.Device? _SharpDxD31Device;
     SharpDxdxgi.Device1? _SharpDxDevice1;
     SharpDxdxgi.Device3? _SharpDxDevice3;
@@ -156,7 +156,11 @@ public abstract class VideoViewBase : SwapChainPanel
             _SwapChain1 = new SharpDxdxgi.SwapChain1(dxgFactory, _SharpDxD31Device, ref swapChainDescription);
             _SharpDxDevice1.MaximumFrameLatency = 1;
 
-            using var nativePanel = SharpDX.ComObject.As<SharpDxdxgi.ISwapChainPanelNative>(_SwapChainPanel);
+            //var iInspectable =  _SwapChainPanel.As<IInspectable>();
+            //var iSwapChainPanelNative = iInspectable.As<SharpDxdxgi.ISwapChainPanelNative>();
+
+            //using var nativePanel = SharpDX.ComObject.As<SharpDxdxgi.ISwapChainPanelNative>(_SwapChainPanel);
+            using var nativePanel = _SwapChainPanel.As<SharpDxdxgi.ISwapChainPanelNative>();
             nativePanel.SwapChain = _SwapChain1;
 
             _SharpDxDevice3 = _SharpDxDevice1.QueryInterface<SharpDxdxgi.Device3>();
