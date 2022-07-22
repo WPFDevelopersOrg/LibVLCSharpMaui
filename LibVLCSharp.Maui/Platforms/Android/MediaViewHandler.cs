@@ -11,7 +11,7 @@ public partial class MediaViewHandler : ViewHandler<IMediaView, VideoViewX>
 
     protected override VideoViewX CreatePlatformView()
     {
-        return new VideoViewX(PlatformApplication.Context);
+        return new VideoViewX(Context);
     }
 
     public static void MapMediaPlayer(MediaViewHandler handler, IMediaView view)
