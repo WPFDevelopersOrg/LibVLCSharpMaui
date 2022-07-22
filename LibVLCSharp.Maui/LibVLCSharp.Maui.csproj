@@ -41,7 +41,7 @@
 	<ItemGroup>
 	  <None Include="Handlers\MediaViewHandler.Shared.cs" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
 	  <PackageReference Include="LibVLCSharp" Version="3.6.6" />
 	</ItemGroup>

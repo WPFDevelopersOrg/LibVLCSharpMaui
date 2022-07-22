@@ -1,24 +1,30 @@
-﻿namespace VLCSharp.Maui.Sample;
+﻿using LibVlcshared = LibVLCSharp.Shared;
+
+namespace VLCSharp.Maui.Sample;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
 	public MainPage()
 	{
 		InitializeComponent();
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+    LibVlcshared.LibVLC? _LibVLC;
+    LibVlcshared.MediaPlayer? _MediaPlayer;
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
+    private void OnCounterClicked(object sender, EventArgs e)
 	{
-		count++;
+#if WINDOWS
+         _LibVLC = new(enableDebugLogs: true);
+#else
+        _LibVLC = new(enableDebugLogs: true);
+#endif
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        using var media = new LibVlcshared.Media(_LibVLC, new Uri("https://www.bilibili.com/video/BV1kF411K7Dh?t=0.0"));
+        _MediaPlayer = new LibVlcshared.MediaPlayer(_LibVLC);
+        VLC_MediaView.MediaPlayer = _MediaPlayer;
+       _MediaPlayer.Play(media);
+    }
 }
 

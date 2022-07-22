@@ -1,7 +1,9 @@
-﻿using UIKit;
+﻿using LibVLCSharp.Maui.Events;
+using LibVLCSharp.Maui.Shared;
+using UIKit;
 
 namespace LibVLCSharp.Maui.Platforms.MacCatalyst;
-public class VideoView : UIView, IVideoView
+public class VideoView : UIView, IVideoView, IVideoViewBase<VLCInitilizedeventArgs>
 {
 
     MediaPlayerX? _mediaPlayer;
@@ -20,6 +22,9 @@ public class VideoView : UIView, IVideoView
             }
         }
     }
+
+    public event EventHandler<VLCInitilizedeventArgs>? Initialized;
+    
 
     void Attach()
     {

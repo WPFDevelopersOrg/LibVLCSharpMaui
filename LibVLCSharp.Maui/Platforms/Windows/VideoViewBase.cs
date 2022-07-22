@@ -6,16 +6,20 @@ using SharpDxdxgi = SharpDX.DXGI;
 
 namespace LibVLCSharp.Maui.Platforms.Windows;
 
-[TemplatePart(Name = PARTSwapChainPanelName, Type = typeof(SwapChainPanel))]
-public abstract class VideoViewBase : Control
+//[TemplatePart(Name = PARTSwapChainPanelName, Type = typeof(SwapChainPanel))]
+public abstract class VideoViewBase : SwapChainPanel
 {
     public VideoViewBase()
     {
-        DefaultStyleKey = typeof(VideoViewBase);
-        if (!DesignMode.IsDesignModeEnabled)
-        {
-            Unloaded += VideoViewBase_Unloaded;
-        }
+        //DefaultStyleKey = typeof(VideoViewBase);
+        //if (!DesignMode.IsDesignModeEnabled)
+        //{
+        //    Unloaded += VideoViewBase_Unloaded;
+        //}
+        _SwapChainPanel = this;
+        SizeChanged += SwapChainPanel_SizeChanged;
+        CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
+        Unloaded += VideoViewBase_Unloaded;
     }
 
     const string PARTSwapChainPanelName = "PARTSwapChainPanel";
@@ -51,16 +55,16 @@ public abstract class VideoViewBase : Control
     {
         base.OnApplyTemplate();
 
-        _SwapChainPanel = GetTemplateChild(PARTSwapChainPanelName) as SwapChainPanel;
-        ArgumentNullException.ThrowIfNull(_SwapChainPanel, "the swapchainpanel is not in the template!");
+        //_SwapChainPanel = GetTemplateChild(PARTSwapChainPanelName) as SwapChainPanel;
+        //ArgumentNullException.ThrowIfNull(_SwapChainPanel, "the swapchainpanel is not in the template!");
 
         if (DesignMode.IsDesignModeEnabled)
             return;
 
-        DestroySwapChain();
+        //DestroySwapChain();
 
-        _SwapChainPanel.SizeChanged += SwapChainPanel_SizeChanged;
-        _SwapChainPanel.CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
+        //_SwapChainPanel.SizeChanged += SwapChainPanel_SizeChanged;
+        //_SwapChainPanel.CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
     }
 
 

@@ -1,17 +1,17 @@
-﻿using LibVLCSharp.Maui.Shared;
-using LibVLCSharp.Platforms.Android;
+﻿using LibVLCSharp.Maui.Platforms.Android;
+using LibVLCSharp.Maui.Shared;
 using Microsoft.Maui.Handlers;
 using PlatformApplication = Android.App.Application;
 
 namespace LibVLCSharp.Maui;
 
 // All the code in this file is only included on Android.
-public partial class MediaViewHandler : ViewHandler<IMediaView, VideoView>
+public partial class MediaViewHandler : ViewHandler<IMediaView, VideoViewX>
 {
 
-    protected override VideoView CreatePlatformView()
+    protected override VideoViewX CreatePlatformView()
     {
-        return new VideoView(PlatformApplication.Context);
+        return new VideoViewX(PlatformApplication.Context);
     }
 
     public static void MapMediaPlayer(MediaViewHandler handler, IMediaView view)

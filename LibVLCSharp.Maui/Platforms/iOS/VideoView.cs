@@ -1,10 +1,15 @@
-﻿using UIKit;
+﻿using LibVLCSharp.Maui.Events;
+using LibVLCSharp.Maui.Shared;
+using UIKit;
 
 namespace LibVLCSharp.Maui.Platforms.iOS;
-public class VideoView : UIView, IVideoView
+public class VideoView : UIView, IVideoView, IVideoViewBase<VLCInitilizedeventArgs>
 {
 
     MediaPlayerX? _mediaPlayer;
+
+    public event EventHandler<VLCInitilizedeventArgs>? Initialized;
+
     public MediaPlayerX? MediaPlayer
     {
         get => _mediaPlayer;
