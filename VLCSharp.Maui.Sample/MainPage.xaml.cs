@@ -12,7 +12,7 @@ public partial class MainPage : ContentPage
     LibVlcshared.LibVLC? _LibVLC;
     LibVlcshared.MediaPlayer? _MediaPlayer;
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
+    [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
     private void OnCounterClicked(object sender, EventArgs e)
 	{
 #if WINDOWS
