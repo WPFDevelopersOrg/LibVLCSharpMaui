@@ -1,5 +1,9 @@
-﻿namespace LibVLCSharp.Maui.Platforms.Tizen;
-public class VideoView : IVideoView
+﻿using LibVLCSharp.Maui.Events;
+using LibVLCSharp.Maui.Shared;
+
+namespace LibVLCSharp.Maui.Platforms.Tizen;
+
+public class VideoView : IVideoView, IVideoViewBase<VLCInitilizedeventArgs>
 {
     MediaPlayerX? _mediaPlayer;
     public MediaPlayerX? MediaPlayer
@@ -17,6 +21,8 @@ public class VideoView : IVideoView
             }
         }
     }
+
+    public event EventHandler<VLCInitilizedeventArgs>? Initialized;
 
     void Attach()
     {
