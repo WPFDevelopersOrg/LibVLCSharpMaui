@@ -14,8 +14,9 @@ public partial class MediaViewHandler : ViewHandler<IMediaView, VideoViewX>
         return new VideoViewX(Context);
     }
 
+    //[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
     public static void MapMediaPlayer(MediaViewHandler handler, IMediaView view)
     {
-
+        handler.PlatformView.MediaPlayer = view.MediaPlayer;
     }
 }

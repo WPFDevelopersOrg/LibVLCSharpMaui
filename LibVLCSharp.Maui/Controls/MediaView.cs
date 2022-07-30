@@ -1,4 +1,5 @@
-﻿using LibVLCSharp.Maui.Shared;
+﻿using LibVLCSharp.Maui.Events;
+using LibVLCSharp.Maui.Shared;
 
 namespace LibVLCSharp.Maui.Controls;
 public class MediaView : View, IMediaView
@@ -25,5 +26,13 @@ public class MediaView : View, IMediaView
         set => SetValue(MediaPlayerProperty, value); 
     }
 
+    public event EventHandler<VLCInitilizedeventArgs>? Initialized;
+
     public event EventHandler<MediaPlayerChangedEventArgs>? MediaPlayerChanged;
+
+    bool IMediaView.TiggerEvent(VLCInitilizedeventArgs arg)
+    {
+        Initialized?.Invoke(this, arg);
+        return true;
+    }
 }

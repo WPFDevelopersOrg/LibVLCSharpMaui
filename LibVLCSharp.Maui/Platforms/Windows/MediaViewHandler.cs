@@ -9,11 +9,18 @@ public partial class MediaViewHandler : ViewHandler<IMediaView, VideoView>
 {
     protected override VideoView CreatePlatformView()
     {
-        return new VideoView();
+        var view = new VideoView();
+        view.Initialized += View_Initialized;
+        return view;
     }
 
     public static void MapMediaPlayer(MediaViewHandler handler, IMediaView view)
     {
         handler.PlatformView.MediaPlayer = view.MediaPlayer;
+    }
+
+    private void View_Initialized(object? sender, Events.VLCInitilizedeventArgs e)
+    {
+        VirtualView.TiggerEvent(e);
     }
 }

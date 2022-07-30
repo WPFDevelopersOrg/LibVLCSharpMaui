@@ -37,7 +37,9 @@
                 HorizontalOptions="Center" />
 
 
-            <vlc:MediaView x:Name="VLC_MediaView" WidthRequest="200" HeightRequest="200"/>
+            <vlc:MediaView x:Name="VLC_MediaView" WidthRequest="200" HeightRequest="200" Initialized="VLC_MediaView_Initialized" >
+                
+            </vlc:MediaView>
 
         </VerticalStackLayout>
     </ScrollView>

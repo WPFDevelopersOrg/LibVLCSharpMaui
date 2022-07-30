@@ -1,11 +1,11 @@
-﻿using Microsoft.UI.Xaml;
+﻿using LibVLCSharp.Maui.Platforms.Windows.Winui_dxinterop;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SharpDX;
 using SharpDX.Mathematics.Interop;
 using System.Runtime.InteropServices;
-using SharpDxdxgi = SharpDX.DXGI;
 using MicrosoftuixamlControls = Microsoft.UI.Xaml.Controls;
-using WinRT;
-using MicrosoftuixamlMedia = Microsoft.UI.Xaml.Media;
+using SharpDxdxgi = SharpDX.DXGI;
 
 namespace LibVLCSharp.Maui.Platforms.Windows;
 
@@ -156,13 +156,20 @@ public abstract class VideoViewBase : MicrosoftuixamlControls.Grid
             _SwapChain1 = new SharpDxdxgi.SwapChain1(dxgFactory, _SharpDxD31Device, ref swapChainDescription);
             _SharpDxDevice1.MaximumFrameLatency = 1;
 
+            //IObjectReference nativeObject = ((IWinRTObject)_SwapChainPanel).NativeObject;
+            //var iSwapChainPanelNative = nativeObject.As<SharpDxdxgi.ISwapChainPanelNative>();
+            //var comObject = ComObject.As<SharpDxdxgi.ISwapChainPanelNative>(nativeObject.ThisPtr.ToPointer());
             //var iInspectable =  _SwapChainPanel.As<IInspectable>();
             //var iSwapChainPanelNative = iInspectable.As<SharpDxdxgi.ISwapChainPanelNative>();
 
             //using var nativePanel = SharpDX.ComObject.As<SharpDxdxgi.ISwapChainPanelNative>(_SwapChainPanel);
-            using var nativePanel = _SwapChainPanel.As<SharpDxdxgi.ISwapChainPanelNative>();
-            nativePanel.SwapChain = _SwapChain1;
 
+            {
+                var comObject = new ComObject(_SwapChainPanel);
+                using var nativePanel = comObject.QueryInterfaceOrNull<Winui_ISwapChainPanelNative>();
+                nativePanel.SwapChain = _SwapChain1;
+            }
+           
             _SharpDxDevice3 = _SharpDxDevice1.QueryInterface<SharpDxdxgi.Device3>();
             ArgumentNullException.ThrowIfNull(_SharpDxDevice3, nameof(SharpDxdxgi.Device3));
 

@@ -14,6 +14,6 @@ public partial class MediaViewHandler : ViewHandler<IMediaView, VideoView>
 
     public static void MapMediaPlayer(MediaViewHandler handler, IMediaView view)
     {
-
+        handler.PlatformView.MediaPlayer = view.MediaPlayer;
     }
 }
