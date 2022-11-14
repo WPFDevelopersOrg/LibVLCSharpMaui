@@ -67,7 +67,6 @@ public abstract class VideoViewBase : MicrosoftuixamlControls.Grid
         //_SwapChainPanel.CompositionScaleChanged += SwapChainPanel_CompositionScaleChanged;
     }
 
-
     void VideoViewBase_Unloaded(object sender, RoutedEventArgs e)
     {
         DestroySwapChain();

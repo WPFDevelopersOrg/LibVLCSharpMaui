@@ -17,7 +17,6 @@ public class Winui_ISwapChainPanelNative : ComObject
         set => SetSwapChain(value);
     }
 
-
     public static explicit operator Winui_ISwapChainPanelNative?(IntPtr nativePtr)
     {
         if (nativePtr != IntPtr.Zero)
@@ -25,7 +24,6 @@ public class Winui_ISwapChainPanelNative : ComObject
 
         return default;
     }
-
 
     internal unsafe void SetSwapChain(SwapChain swapChain)
     {

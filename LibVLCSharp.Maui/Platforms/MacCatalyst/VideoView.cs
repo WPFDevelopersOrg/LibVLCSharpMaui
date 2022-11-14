@@ -30,6 +30,8 @@ public class VideoView : UIView, IVideoView, IVideoViewBase<VLCInitilizedeventAr
     {
         if (MediaPlayer != null && MediaPlayer.NativeReference != IntPtr.Zero)
             MediaPlayer.NsObject = Handle;
+
+        Initialized?.Invoke(this, new(Array.Empty<string>()));
     }
 
     void Detach()

@@ -11,7 +11,14 @@ public partial class MediaViewHandler : ViewHandler<IMediaView, VideoViewX>
 
     protected override VideoViewX CreatePlatformView()
     {
-        return new VideoViewX(Context);
+        var view = new VideoViewX(Context);
+        view.Initialized += View_Initialized;
+        return view;
+    }
+
+    private void View_Initialized(object? sender, Events.VLCInitilizedeventArgs e)
+    {
+        VirtualView.TiggerEvent(e);
     }
 
     //[System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]

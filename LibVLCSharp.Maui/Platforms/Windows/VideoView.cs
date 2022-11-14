@@ -10,7 +10,7 @@ public class VideoView : MicrosoftuixamlControls.ContentControl, IVideoView, IVi
 {
     public VideoView()
     {
-        Content = "123123123232323";
+       
     }
 
     MediaPlayerX? _mediaPlayer;
@@ -43,14 +43,12 @@ public class VideoView : MicrosoftuixamlControls.ContentControl, IVideoView, IVi
         var handle = window.GetWindowHandle();
         var appWindow = window.GetAppWindow();
         appWindow?.Show();
-        //Microsoftuixaml.Application.Current.
-
 
         if (this is not IWinRTObject iWinRTObject)
             return;
  
-
         MediaPlayer.Hwnd = handle;
+        Initialized?.Invoke(this, new(Array.Empty<string>()));
     }
 
     void Detach()
