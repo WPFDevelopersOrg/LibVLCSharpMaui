@@ -24,7 +24,7 @@ public class VideoView : UIView, IVideoView, IVideoViewBase<VLCInitilizedeventAr
     }
 
     public event EventHandler<VLCInitilizedeventArgs>? Initialized;
-    
+
 
     void Attach()
     {

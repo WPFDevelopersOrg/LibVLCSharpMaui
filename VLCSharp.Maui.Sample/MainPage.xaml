@@ -1,47 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vlc="http://www.maui.net/vlcsharp"
+             xmlns:con="clr-namespace:LibVLCSharp.Maui.Controls;assembly=LibVLCSharp.Maui"
              x:Class="VLCSharp.Maui.Sample.MainPage">
-			 
-    <ScrollView>
-        <VerticalStackLayout 
-            Spacing="25" 
-            Padding="30,0" 
-            VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-                
-            <Label 
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-            
-            <Label 
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Editor x:Name="Source"
+                    VerticalTextAlignment="Center"
+                    Margin="0,0,5,0"/>
+            <Button Text="播放"
+                    Grid.Column="1"
+                    Clicked="Button_Clicked" />
+        </Grid>
+        <con:MediaView x:Name="Media"
+                       Grid.Row="1"
+                       Margin="0,10,0,0" />
+    </Grid>
 
-            <Button 
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-
-            <vlc:MediaView x:Name="VLC_MediaView" WidthRequest="200" HeightRequest="200" Initialized="VLC_MediaView_Initialized" >
-                
-            </vlc:MediaView>
-
-        </VerticalStackLayout>
-    </ScrollView>
- 
 </ContentPage>

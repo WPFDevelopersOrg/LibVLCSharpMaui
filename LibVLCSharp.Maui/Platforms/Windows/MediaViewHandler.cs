@@ -5,11 +5,11 @@ using Microsoft.Maui.Handlers;
 namespace LibVLCSharp.Maui;
 
 // All the code in this file is only included on Windows.
-public partial class MediaViewHandler : ViewHandler<IMediaView, VideoViewx>
+public partial class MediaViewHandler : ViewHandler<IMediaView, VideoViewFrame>
 {
-    protected override VideoViewx CreatePlatformView()
+    protected override VideoViewFrame CreatePlatformView()
     {
-        var view = new VideoViewx();
+        var view = new VideoViewFrame();
         view.Initialized += View_Initialized;
         return view;
     }
