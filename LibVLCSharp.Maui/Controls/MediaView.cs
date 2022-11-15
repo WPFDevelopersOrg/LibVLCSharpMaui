@@ -20,10 +20,10 @@ public class MediaView : View, IMediaView
         mediaView.MediaPlayerChanged?.Invoke(bindable, new MediaPlayerChangedEventArgs(oldValuePlayer, newValuePlayer));
     }, defaultBindingMode: BindingMode.TwoWay);
 
-    public MediaPlayerX? MediaPlayer 
-    { 
-        get => (MediaPlayerX?)GetValue(MediaPlayerProperty); 
-        set => SetValue(MediaPlayerProperty, value); 
+    public MediaPlayerX? MediaPlayer
+    {
+        get => (MediaPlayerX?)GetValue(MediaPlayerProperty);
+        set => SetValue(MediaPlayerProperty, value);
     }
 
     public event EventHandler<VLCInitilizedeventArgs>? Initialized;

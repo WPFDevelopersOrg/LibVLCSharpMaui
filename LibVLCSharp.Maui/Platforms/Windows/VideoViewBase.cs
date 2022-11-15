@@ -168,7 +168,7 @@ public abstract class VideoViewBase : MicrosoftuixamlControls.Grid
                 using var nativePanel = comObject.QueryInterfaceOrNull<Winui_ISwapChainPanelNative>();
                 nativePanel.SwapChain = _SwapChain1;
             }
-           
+
             _SharpDxDevice3 = _SharpDxDevice1.QueryInterface<SharpDxdxgi.Device3>();
             ArgumentNullException.ThrowIfNull(_SharpDxDevice3, nameof(SharpDxdxgi.Device3));
 

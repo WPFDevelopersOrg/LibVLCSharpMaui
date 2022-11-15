@@ -3,14 +3,14 @@ using LibVLCSharp.Maui.Shared;
 using Microsoft.Maui.Platform;
 using WinRT;
 using Microsoftuixaml = Microsoft.UI.Xaml;
-using MicrosoftuixamlControls= Microsoft.UI.Xaml.Controls;
+using MicrosoftuixamlControls = Microsoft.UI.Xaml.Controls;
 
 namespace LibVLCSharp.Maui.Platforms.Windows;
 public class VideoView : MicrosoftuixamlControls.ContentControl, IVideoView, IVideoViewBase<VLCInitilizedeventArgs>
 {
     public VideoView()
     {
-       
+
     }
 
     MediaPlayerX? _mediaPlayer;
@@ -46,7 +46,7 @@ public class VideoView : MicrosoftuixamlControls.ContentControl, IVideoView, IVi
 
         if (this is not IWinRTObject iWinRTObject)
             return;
- 
+
         MediaPlayer.Hwnd = handle;
         Initialized?.Invoke(this, new(Array.Empty<string>()));
     }
